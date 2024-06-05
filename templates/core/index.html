@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="justify-content-center">ToDo List</h2>
+    <a href="{% url 'todo_add' %}">
+    <button type="button" class="btn btn-outline-primary">Add ToDo</button>
+      </a>
+  </div>
+
+  <div class="card shadow-lg border-primary mb-3">
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+
+            <th scope="col">Complete</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for items in data %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{items.title}}</td>
+            <td>{{items.description}}</td>
+            <td>{{items.start_date}}</td>
+            <td>{{items.end_date}}</td>
+            {% if items.complete == True %}
+            <td>Done</td>
+            {% else %}
+            <td>Continue</td>
+            {% endif %}
+            <td>
+              <a href="">
+              <i class="fa-solid fa-trash"></i>
+                </a>
+              <a href="">
+              <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
